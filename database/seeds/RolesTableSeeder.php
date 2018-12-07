@@ -11,10 +11,13 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Role::create([
-            'name'        => '超级管理员',
-            'intro'       => '超级管理员,拥有系统所有权限',
-            'permissions' => [],
-        ])->save();
+        $model = \App\Models\Role::find(1);
+        if (!$model) {
+            \App\Models\Role::create([
+                'name'        => '超级管理员',
+                'intro'       => '超级管理员,拥有系统所有权限',
+                'permissions' => [],
+            ])->save();
+        }
     }
 }
