@@ -26,8 +26,18 @@ Route::group(
                 'middleware' => 'auth_admin:admin'
             ],
             function () {
+                Route::get('logout', 'AuthController@logout')->name('admin.auth.logout');
                 Route::get('index', 'IndexController@index')->name('admin.index.index');
                 Route::get('home', 'IndexController@home')->name('admin.index.home');
+
+                Route::group(
+                    [
+                        'prefix' => 'user',
+                    ],
+                    function () {
+                        Route::any('change_password','UserController@changePassword')->name('admin.user.change_password');
+                    }
+                );
             }
         );
     }

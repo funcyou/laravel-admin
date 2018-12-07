@@ -43,4 +43,11 @@ class AuthController extends Controller
         }
         return view('admin.auth.login');
     }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        $this->request->session()->invalidate();
+        return redirect()->route('admin.auth.login');
+    }
 }
